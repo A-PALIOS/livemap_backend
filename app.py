@@ -5,7 +5,7 @@ import shapely.geometry
 import folium
 import requests
 
-APP_TITLE = 'Κ.Ο.Μ.Υ. backend'
+APP_TITLE = 'Κ.Ο.Μ.Υ. backend 1.0'
 APP_SUB_TITLE = 'by CMT Prooptiki'
 def geojson_maker():
     map_data3 = pd.read_excel('komgeodata_despina.xlsx',dtype={'KALCODE':str})
