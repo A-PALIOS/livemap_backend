@@ -5,7 +5,7 @@ import shapely.geometry
 import folium
 import requests
 
-APP_TITLE = 'Κ.Ο.Μ.Υ. backend 1.1'
+APP_TITLE = 'Κ.Ο.Μ.Υ. backend 1.2'
 APP_SUB_TITLE = 'by CMT Prooptiki'
 def geojson_maker(file1,file2):
     #map_data3 = pd.read_excel('komgeodata_despina.xlsx',dtype={'KALCODE':str})
@@ -54,6 +54,6 @@ def main():
     st.caption(APP_SUB_TITLE)
     file1=st.file_uploader("Επελεξε περιφεριες", type=["xlsx"], key="key1")
     file2=st.file_uploader("Επελεξε περιφεριακες ενοτητες", type=["xlsx"], key="key2")
-    st.button(on_click=geojson_maker(file1,file2))
+    st.button("koybi",on_click=geojson_maker(file1,file2))
 if __name__ == "__main__":
     main()
