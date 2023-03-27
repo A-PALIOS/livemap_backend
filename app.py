@@ -7,12 +7,13 @@ import requests
 
 APP_TITLE = 'Κ.Ο.Μ.Υ. backend 1.0'
 APP_SUB_TITLE = 'by CMT Prooptiki'
-def geojson_maker():
-    map_data3 = pd.read_excel('komgeodata_despina.xlsx',dtype={'KALCODE':str})
+def geojson_maker(file1,file2):
+    #map_data3 = pd.read_excel('komgeodata_despina.xlsx',dtype={'KALCODE':str})
     
-    map_data4 = pd.read_excel('komygeodataper2_despina.xlsx',dtype={'KALCODE':str})
-    
-    
+    #map_data4 = pd.read_excel('komygeodataper2_despina.xlsx',dtype={'KALCODE':str})
+    map_data3 = pd.read_excel(file1,dtype={'KALCODE':str})
+    map_data4 = pd.read_excel(file2,dtype={'KALCODE':str})
+
     geojson_url = 'https://raw.githubusercontent.com/michalis-raptakis/greece-region-units-geojson/master/greece-region-units-geojson.json'
     response = requests.get(geojson_url)
     geojson = response.json()
@@ -51,8 +52,8 @@ def main():
     st.set_page_config(APP_TITLE)
     st.title(APP_TITLE)
     st.caption(APP_SUB_TITLE)
-    st.file_uploader("Επελεξε περιφεριες", type=["xlsx"], key="key1")
-    st.file_uploader("Επελεξε περιφεριακες ενοτητες", type=["xlsx"], key="key2")
-    st.button(on_click=geojson_maker())
+    file1=st.file_uploader("Επελεξε περιφεριες", type=["xlsx"], key="key1")
+    file2=st.file_uploader("Επελεξε περιφεριακες ενοτητες", type=["xlsx"], key="key2")
+    st.button(on_click=geojson_maker(file1,file2))
 if __name__ == "__main__":
     main()
