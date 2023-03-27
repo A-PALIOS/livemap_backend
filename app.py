@@ -53,6 +53,6 @@ def main():
     st.caption(APP_SUB_TITLE)
     st.file_uploader("Επελεξε περιφεριες", type=["xlsx"], key="key1")
     st.file_uploader("Επελεξε περιφεριακες ενοτητες", type=["xlsx"], key="key2")
-    st.button(on_click=geojson_maker())
+    #st.button(on_click=geojson_maker())
 if __name__ == "__main__":
     main()
