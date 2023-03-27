@@ -5,7 +5,7 @@ import shapely.geometry
 import folium
 import requests
 
-APP_TITLE = 'Κ.Ο.Μ.Υ. backend 1.2'
+APP_TITLE = 'Κ.Ο.Μ.Υ. backend 1.3'
 APP_SUB_TITLE = 'by CMT Prooptiki'
 def geojson_maker(file1,file2):
     #map_data3 = pd.read_excel('komgeodata_despina.xlsx',dtype={'KALCODE':str})
@@ -46,6 +46,7 @@ def geojson_maker(file1,file2):
                        'Μοριακοί νοσηλευτές & Επισκέπτες υγείας που εμβολιάζουν':'Επαγγελματίες υγείας που πραγματοποιούν μοριακά τεστ και εμβολιάζουν'},inplace=True)
     merge['Περιφερειακή Ενότητα'] = [f'<b>{x}</b>' for x in merge['Περιφερειακή Ενότητα']]
     merge2['Περιφέρεια'] = [f'<b>{x}</b>' for x in merge2['Περιφέρεια']]
+    print(merge)
     merge.to_file('testgeo1.geojson',driver="GeoJSON")
     merge2.to_file('testgeo2.geojson',driver="GeoJSON")
 def main():
@@ -54,6 +55,7 @@ def main():
     st.caption(APP_SUB_TITLE)
     file1=st.file_uploader("Επελεξε περιφεριες", type=["xlsx"], key="key1")
     file2=st.file_uploader("Επελεξε περιφεριακες ενοτητες", type=["xlsx"], key="key2")
-    st.button("koybi",on_click=geojson_maker(file1,file2))
+    if (file1 is not None)and (file2 is not None):
+        st.button("koybi",on_click=geojson_maker(file1,file2))
 if __name__ == "__main__":
     main()
