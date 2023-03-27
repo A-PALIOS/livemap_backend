@@ -1,5 +1,9 @@
 import streamlit as st
 import pandas as pd
+import geopandas
+import shapely.geometry
+import folium
+import requests
 
 APP_TITLE = 'Κ.Ο.Μ.Υ. backend'
 APP_SUB_TITLE = 'by CMT Prooptiki'
