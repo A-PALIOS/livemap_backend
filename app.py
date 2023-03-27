@@ -46,7 +46,7 @@ def geojson_maker(file1,file2):
                        'Μοριακοί νοσηλευτές & Επισκέπτες υγείας που εμβολιάζουν':'Επαγγελματίες υγείας που πραγματοποιούν μοριακά τεστ και εμβολιάζουν'},inplace=True)
     merge['Περιφερειακή Ενότητα'] = [f'<b>{x}</b>' for x in merge['Περιφερειακή Ενότητα']]
     merge2['Περιφέρεια'] = [f'<b>{x}</b>' for x in merge2['Περιφέρεια']]
-    st.Write(merge)
+    st.write(merge)
     merge.to_file('testgeo1.geojson',driver="GeoJSON")
     merge2.to_file('testgeo2.geojson',driver="GeoJSON")
 def main():
