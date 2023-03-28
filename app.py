@@ -4,7 +4,7 @@ import geopandas
 import shapely.geometry
 import folium
 import requests
-
+from github import Github
 APP_TITLE = 'Κ.Ο.Μ.Υ. backend 1.6'
 APP_SUB_TITLE = 'by CMT Prooptiki'
 def geojson_maker(file1,file2):
@@ -47,11 +47,10 @@ def geojson_maker(file1,file2):
     merge['Περιφερειακή Ενότητα'] = [f'<b>{x}</b>' for x in merge['Περιφερειακή Ενότητα']]
     merge2['Περιφέρεια'] = [f'<b>{x}</b>' for x in merge2['Περιφέρεια']]
     st.write(merge)
-    merge.to_file('testgeo1.geojson',driver="GeoJSON")
-    merge2.to_file('testgeo2.geojson',driver="GeoJSON")
+    #merge.to_file('testgeo1.geojson',driver="GeoJSON")
+    #merge2.to_file('testgeo2.geojson',driver="GeoJSON")
     upload()
 def upload():
-    from github import Github
     
     # create a Github instance with your Github access token
     g = Github("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")
