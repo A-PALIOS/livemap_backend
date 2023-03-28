@@ -53,8 +53,8 @@ def geojson_maker(file1,file2):
 def upload():
     
     # create a Github instance with your Github access token
-    g = Github("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")
-
+    g = Github(st.secrets["access_token"])
+        
     # get the repository where you want to upload the file
     repo = g.get_repo("A-PALIOS/livemap_backend")
     
