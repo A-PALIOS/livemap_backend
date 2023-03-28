@@ -49,7 +49,7 @@ def geojson_maker(file1,file2):
     st.write(merge)
     merge1geo=merge.to_file('testgeo1.geojson',driver="GeoJSON")
     merge2geo=merge2.to_file('testgeo2.geojson',driver="GeoJSON")
-    upload(merge1geo,merge2geo)
+    upload(merge,merge2)
 def upload(merge1geo,merge2geo):
     
     # create a Github instance with your Github access token
