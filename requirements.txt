@@ -30,4 +30,4 @@ streamlit_folium==0.6.13
 #gitpython
 PyGithub
 pip
-json
+json5
