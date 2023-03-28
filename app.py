@@ -49,6 +49,48 @@ def geojson_maker(file1,file2):
     st.write(merge)
     merge.to_file('testgeo1.geojson',driver="GeoJSON")
     merge2.to_file('testgeo2.geojson',driver="GeoJSON")
+    upload()
+def upload():
+    from github import Github
+    
+    # create a Github instance with your Github access token
+    g = Github("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")
+
+    # get the repository where you want to upload the file
+    repo = g.get_repo("A-PALIOS/livemap_backend")
+    
+    file_contents="hello 1"
+    file_contents2="hello 2"
+    
+    # file = repo.get_contents("data/example1.txt")
+    file=''
+    file2=''
+    
+    try:
+        file = repo.get_contents("data/example.txt")
+    except :
+        print ('error1')
+    try:
+        file2 = repo.get_contents("data/example2.txt")
+    except :
+        print ('error2')
+        
+    if((file and file2)and(file!='' and file2!='')):
+        print('hello')
+        # create a new file in the repository with the uploaded file contents
+        repo.update_file("data/example.txt", "Upload from Streamlit", file_contents,file.sha)
+        repo.update_file("data/example2.txt", "Upload from Streamlit", file_contents2,file2.sha)
+
+    file_contents="hello 3"
+    file_contents2="hello 4"
+
+    if(not(file)):
+        # create a new file in the repository with the uploaded file contents
+        repo.create_file("data/example.txt", "Upload from Streamlit", file_contents)
+    if(not(file2)):
+        # create a new file in the repository with the uploaded file contents
+        repo.create_file("data/example2.txt", "Upload from Streamlit", file_contents2)
+    return "done"
 def main():
     st.set_page_config(APP_TITLE)
     st.title(APP_TITLE)
