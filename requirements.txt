@@ -25,7 +25,8 @@ streamlit_folium==0.6.13
 # tropycal
 
 #giflib
-gitdb
-github
-gitpython
+#gitdb
+#github
+#gitpython
+PyGithub
 pip
