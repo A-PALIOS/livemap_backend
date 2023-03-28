@@ -47,10 +47,10 @@ def geojson_maker(file1,file2):
     merge['Περιφερειακή Ενότητα'] = [f'<b>{x}</b>' for x in merge['Περιφερειακή Ενότητα']]
     merge2['Περιφέρεια'] = [f'<b>{x}</b>' for x in merge2['Περιφέρεια']]
     st.write(merge)
-    #merge.to_file('testgeo1.geojson',driver="GeoJSON")
-    #merge2.to_file('testgeo2.geojson',driver="GeoJSON")
-    upload()
-def upload():
+    merge1geo=merge.to_file('testgeo1.geojson',driver="GeoJSON")
+    merge2geo=merge2.to_file('testgeo2.geojson',driver="GeoJSON")
+    upload(merge1geo,merge2geo)
+def upload(merge1geo,merge2geo):
     
     # create a Github instance with your Github access token
     g = Github(st.secrets["access_token"])
@@ -58,37 +58,37 @@ def upload():
     # get the repository where you want to upload the file
     repo = g.get_repo("A-PALIOS/livemap_backend")
     
-    file_contents="hello 1"
-    file_contents2="hello 2"
+    #file_contents="hello 1"
+    #file_contents2="hello 2"
     
     # file = repo.get_contents("data/example1.txt")
     file=''
     file2=''
     
     try:
-        file = repo.get_contents("data/example.txt")
+        file = repo.get_contents("data/geojson1.geojson")
     except :
         print ('error1')
     try:
-        file2 = repo.get_contents("data/example2.txt")
+        file2 = repo.get_contents("data/geojson2.geojson")
     except :
         print ('error2')
         
     if((file and file2)and(file!='' and file2!='')):
         print('hello')
         # create a new file in the repository with the uploaded file contents
-        repo.update_file("data/example.txt", "Upload from Streamlit", file_contents,file.sha)
-        repo.update_file("data/example2.txt", "Upload from Streamlit", file_contents2,file2.sha)
+        repo.update_file("data/geojson1.geojson", "Upload from Streamlit", merge1geo,file.sha)
+        repo.update_file("data/geojson2.geojson", "Upload from Streamlit", merge2geo,file2.sha)
 
-    file_contents="hello 3"
-    file_contents2="hello 4"
+    #file_contents="hello 3"
+    #file_contents2="hello 4"
 
     if(not(file)):
         # create a new file in the repository with the uploaded file contents
-        repo.create_file("data/example.txt", "Upload from Streamlit", file_contents)
+        repo.create_file("data/geojson1.geojson", "Upload from Streamlit", merge1geo)
     if(not(file2)):
         # create a new file in the repository with the uploaded file contents
-        repo.create_file("data/example2.txt", "Upload from Streamlit", file_contents2)
+        repo.create_file("data/geojson2.geojson", "Upload from Streamlit", merge2geo)
     return "done"
 def main():
     st.set_page_config(APP_TITLE)
