@@ -77,18 +77,18 @@ def upload(merge1geo,merge2geo):
     if((file and file2)and(file!='' and file2!='')):
         print('hello')
         # create a new file in the repository with the uploaded file contents
-        repo.update_file("data/geojson1.geojson", "Upload from Streamlit", merge1geo,file.sha,content_type="application/vnd.geo+json")
-        repo.update_file("data/geojson2.geojson", "Upload from Streamlit", merge2geo,file2.sha,content_type="application/vnd.geo+json")
+        repo.update_file("data/geojson1.geojson", "Upload from Streamlit", merge1geo,file.sha,content="application/vnd.geo+json")
+        repo.update_file("data/geojson2.geojson", "Upload from Streamlit", merge2geo,file2.sha,content="application/vnd.geo+json")
 
     #file_contents="hello 3"
     #file_contents2="hello 4"
 
     if(not(file)):
         # create a new file in the repository with the uploaded file contents
-        repo.create_file("data/geojson1.geojson", "Upload from Streamlit", merge1geo,content_type="application/vnd.geo+json")
+        repo.create_file("data/geojson1.geojson", "Upload from Streamlit", merge1geo,content="application/vnd.geo+json")
     if(not(file2)):
         # create a new file in the repository with the uploaded file contents
-        repo.create_file("data/geojson2.geojson", "Upload from Streamlit", merge2geo,content_type="application/vnd.geo+json")
+        repo.create_file("data/geojson2.geojson", "Upload from Streamlit", merge2geo,content="application/vnd.geo+json")
     return "done"
 def main():
     st.set_page_config(APP_TITLE)
