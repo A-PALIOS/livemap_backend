@@ -49,7 +49,7 @@ def geojson_maker(file1,file2):
     st.write(merge)
     merge1geo=merge.to_file('testgeo1.geojson',driver="GeoJSON")
     merge2geo=merge2.to_file('testgeo2.geojson',driver="GeoJSON")
-    upload(merge,merge2)
+    upload(merge1geo,merge2geo)
 def upload(merge1geo,merge2geo):
     
     # create a Github instance with your Github access token
@@ -66,29 +66,29 @@ def upload(merge1geo,merge2geo):
     file2=''
     
     try:
-        file = repo.get_contents("data/geojson1.geojson")
+        file = repo.get_contents("data/geojson1.json")
     except :
         print ('error1')
     try:
-        file2 = repo.get_contents("data/geojson2.geojson")
+        file2 = repo.get_contents("data/geojson2.json")
     except :
         print ('error2')
         
     if((file and file2)and(file!='' and file2!='')):
         print('hello')
         # create a new file in the repository with the uploaded file contents
-        repo.update_file("data/geojson1.geojson", "Upload from Streamlit", merge1geo,file.sha)
-        repo.update_file("data/geojson2.geojson", "Upload from Streamlit", merge2geo,file2.sha)
+        repo.update_file("data/geojson1.json", "Upload from Streamlit", merge1geo,file.sha)
+        repo.update_file("data/geojson2.json", "Upload from Streamlit", merge2geo,file2.sha)
 
     #file_contents="hello 3"
     #file_contents2="hello 4"
 
     if(not(file)):
         # create a new file in the repository with the uploaded file contents
-        repo.create_file("data/geojson1.geojson", "Upload from Streamlit", merge1geo)
+        repo.create_file("data/geojson1.json", "Upload from Streamlit", merge1geo)
     if(not(file2)):
         # create a new file in the repository with the uploaded file contents
-        repo.create_file("data/geojson2.geojson", "Upload from Streamlit", merge2geo)
+        repo.create_file("data/geojson2.json", "Upload from Streamlit", merge2geo)
     return "done"
 def main():
     st.set_page_config(APP_TITLE)
