@@ -5,6 +5,7 @@ import shapely.geometry
 import folium
 import requests
 from github import Github
+import json
 APP_TITLE = 'Κ.Ο.Μ.Υ. backend 1.6'
 APP_SUB_TITLE = 'by CMT Prooptiki'
 def geojson_maker(file1,file2):
