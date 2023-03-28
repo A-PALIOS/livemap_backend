@@ -48,9 +48,9 @@ def geojson_maker(file1,file2):
     merge['Περιφερειακή Ενότητα'] = [f'<b>{x}</b>' for x in merge['Περιφερειακή Ενότητα']]
     merge2['Περιφέρεια'] = [f'<b>{x}</b>' for x in merge2['Περιφέρεια']]
     st.write(merge)
-    #merge1geo=merge.to_file('testgeo1.geojson',driver="GeoJSON")
-    #merge2geo=merge2.to_file('testgeo2.geojson',driver="GeoJSON")
-    upload(merge,merge2)
+    merge1geo=merge.to_file('testgeo1.geojson',driver="GeoJSON")
+    merge2geo=merge2.to_file('testgeo2.geojson',driver="GeoJSON")
+    upload(merge1geo,merge2geo)
 def upload(merge1geo,merge2geo):
     json_contents1 = json.dumps(merge1geo).encode("utf-8")
     json_contents2 = json.dumps(merge2geo).encode("utf-8")
