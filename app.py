@@ -48,9 +48,9 @@ def geojson_maker(file1,file2):
     merge['Περιφερειακή Ενότητα'] = [f'<b>{x}</b>' for x in merge['Περιφερειακή Ενότητα']]
     merge2['Περιφέρεια'] = [f'<b>{x}</b>' for x in merge2['Περιφέρεια']]
     st.write(merge)
-    merge1geo=merge.to_file('testgeo1.geojson',driver="GeoJSON")
-    merge2geo=merge2.to_file('testgeo2.geojson',driver="GeoJSON")
-    upload(merge1geo,merge2geo)
+    #merge1geo=merge.to_file('testgeo1.geojson',driver="GeoJSON")
+    #merge2geo=merge2.to_file('testgeo2.geojson',driver="GeoJSON")
+    upload(merge,merge2)
 def upload(merge1geo,merge2geo):
     json_contents1 = json.dumps(merge1geo).encode("utf-8")
     json_contents2 = json.dumps(merge2geo).encode("utf-8")
@@ -79,18 +79,18 @@ def upload(merge1geo,merge2geo):
     if((file and file2)and(file!='' and file2!='')):
         print('hello')
         # create a new file in the repository with the uploaded file contents
-        repo.update_file("data/geojson1.geojson;type=application/vnd.geo+json", "Upload from Streamlit", json_contents1,file.sha)
-        repo.update_file("data/geojson2.geojson;type=application/vnd.geo+json", "Upload from Streamlit", json_contents2,file2.sha)
+        repo.update_file("data/geojson1.geojson", "Upload from Streamlit", json_contents1,file.sha)
+        repo.update_file("data/geojson2.geojson", "Upload from Streamlit", json_contents2,file2.sha)
 
     #file_contents="hello 3"
     #file_contents2="hello 4"
 
     if(not(file)):
         # create a new file in the repository with the uploaded file contents
-        repo.create_file("data/geojson1.geojson;type=application/vnd.geo+json", "Upload from Streamlit", json_contents1)
+        repo.create_file("data/geojson1.geojson", "Upload from Streamlit", json_contents1)
     if(not(file2)):
         # create a new file in the repository with the uploaded file contents
-        repo.create_file("data/geojson2.geojson;type=application/vnd.geo+json", "Upload from Streamlit", json_contents2)
+        repo.create_file("data/geojson2.geojson", "Upload from Streamlit", json_contents2)
     return "done"
 def main():
     st.set_page_config(APP_TITLE)
