@@ -74,7 +74,7 @@ def upload(merge1geo,merge2geo):
     # serialize the GeoJSON object to a JSON string and encode as bytes
     #json_contents = json.dumps(merge).encode("utf-8")
     json_contents1= merge1geo.to_json()
-    json_contents1= merge2geo.to_json()
+    json_contents2= merge2geo.to_json()
 
     try:
         file1 = repo.get_contents("data/geojson1.geojson")
