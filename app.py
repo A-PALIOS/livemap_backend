@@ -52,8 +52,8 @@ def geojson_maker(file1,file2):
     merge2geo=merge2.to_file('testgeo2.geojson',driver="GeoJSON")
     upload(merge1geo,merge2geo)
 def upload(merge1geo,merge2geo):
-    json_contents1 = json.dumps(merge1geo).encode("utf-8")
-    json_contents2 = json.dumps(merge2geo).encode("utf-8")
+    #json_contents1 = json.dumps(merge1geo).encode("utf-8")
+    #json_contents2 = json.dumps(merge2geo).encode("utf-8")
     # create a Github instance with your Github access token
     g = Github(st.secrets["access_token"])
         
@@ -64,11 +64,20 @@ def upload(merge1geo,merge2geo):
     #file_contents2="hello 2"
     
     # file = repo.get_contents("data/example1.txt")
-    file=''
+    file1=''
     file2=''
     
+    # define the file path and content for the new GeoJSON file
+    #file_path = "data/geojson1.geojson"
+    #file_contents = {"type": "FeatureCollection", "features": ['hello','there']}
+
+    # serialize the GeoJSON object to a JSON string and encode as bytes
+    #json_contents = json.dumps(merge).encode("utf-8")
+    json_contents1= merge1geo.to_json()
+    json_contents1= merge2geo.to_json()
+
     try:
-        file = repo.get_contents("data/geojson1.geojson")
+        file1 = repo.get_contents("data/geojson1.geojson")
     except :
         print ('error1')
     try:
@@ -76,10 +85,10 @@ def upload(merge1geo,merge2geo):
     except :
         print ('error2')
         
-    if((file and file2)and(file!='' and file2!='')):
+    if((file1 and file2)and(file1!='' and file2!='')):
         print('hello')
         # create a new file in the repository with the uploaded file contents
-        repo.update_file("data/geojson1.geojson", "Upload from Streamlit", json_contents1,file.sha)
+        repo.update_file("data/geojson1.geojson", "Upload from Streamlit", json_contents1,file1.sha)
         repo.update_file("data/geojson2.geojson", "Upload from Streamlit", json_contents2,file2.sha)
 
     #file_contents="hello 3"
