@@ -77,11 +77,11 @@ def upload(merge1geo,merge2geo):
     json_contents2= merge2geo.to_json()
 
     try:
-        file1 = repo.get_contents("data/geojson1.geojson")
+        file1 = repo.get_contents("data/geojson3.geojson")
     except :
         print ('error1')
     try:
-        file2 = repo.get_contents("data/geojson2.geojson")
+        file2 = repo.get_contents("data/geojson4.geojson")
     except :
         print ('error2')
         
@@ -96,10 +96,10 @@ def upload(merge1geo,merge2geo):
 
     if(not(file1)):
         # create a new file in the repository with the uploaded file contents
-        repo.create_file("data/geojson1.geojson", "Upload from Streamlit", json_contents1)
+        repo.create_file("data/geojson3.geojson", "Upload from Streamlit", json_contents1)
     if(not(file2)):
         # create a new file in the repository with the uploaded file contents
-        repo.create_file("data/geojson2.geojson", "Upload from Streamlit", json_contents2)
+        repo.create_file("data/geojson4.geojson", "Upload from Streamlit", json_contents2)
     return "done"
 def main():
     st.set_page_config(APP_TITLE)
