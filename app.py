@@ -94,7 +94,7 @@ def upload(merge1geo,merge2geo):
     #file_contents="hello 3"
     #file_contents2="hello 4"
 
-    if(not(file)):
+    if(not(file1)):
         # create a new file in the repository with the uploaded file contents
         repo.create_file("data/geojson1.geojson", "Upload from Streamlit", json_contents1)
     if(not(file2)):
